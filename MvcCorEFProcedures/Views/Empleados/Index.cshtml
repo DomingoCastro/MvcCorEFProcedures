@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcCorEFProcedures.Models.Empleado>
+
+@{
+    int registros = (int)ViewData["REGISTROS"];
+    //PARA MI DIBUJO ME DECLARO UNA VARIABLE NUMERO DE PAGINA
+    int numeropagina = 1;
+}
+
+
+<ul class="list-group-horizontal-lg">
+    @for (int i = 1; i <= registros; i += 3)
+    {
+        <li class="list-group-item">
+            <a asp-controller="Empleados"
+               asp-action="Index"
+               asp-route-posicion="@i">
+           Página @numeropagina</a>
+        </li>
+        numeropagina += 1;
+    }
+</ul>
+
+<h1>Empleados</h1>
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oficio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oficio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
